@@ -9,10 +9,12 @@ export default function AnalysisResults({ results }: AnalysisResultsProps) {
     if (results.length === 0) return null;
 
     return (
-        <section className="w-full max-w-6xl mx-auto mb-20 px-4">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-slate-900">
-                <span className="text-primary">01.</span> Market Analysis
-            </h2>
+        <section className="w-full max-w-6xl mx-auto mb-24 px-4 mt-12">
+            <div className="flex justify-center mb-10">
+                <h2 className="text-3xl font-bold text-slate-900">
+                    Market Analysis
+                </h2>
+            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {results.map((app) => (

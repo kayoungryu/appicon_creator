@@ -53,18 +53,6 @@ export default function Home() {
       </div>
 
       <div className="relative z-10 px-4">
-        <nav className="flex items-center justify-between max-w-7xl mx-auto py-6 mb-10">
-          <div className="text-xl font-bold tracking-tight flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-purple-700 rounded-lg flex items-center justify-center text-white font-mono shadow-lg shadow-purple-200">
-              A
-            </div>
-            <span className="text-slate-900">AppIcon<span className="text-primary">.ai</span></span>
-          </div>
-          <div className="hidden md:flex gap-6 text-sm font-medium text-slate-500">
-            <a href="#analysis" className="hover:text-primary transition-colors">Analysis</a>
-            <a href="#generator" className="hover:text-primary transition-colors">Generator</a>
-          </div>
-        </nav>
 
         <Hero />
 

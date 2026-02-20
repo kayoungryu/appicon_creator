@@ -24,9 +24,6 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
     return (
         <section className="w-full max-w-6xl mx-auto mb-20 px-4">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 relative overflow-hidden shadow-xl shadow-slate-200/50">
-                <div className="absolute top-0 right-0 p-4 opacity-5">
-                    <Sparkles className="w-40 h-40 text-primary" />
-                </div>
 
                 <div className="relative z-10 space-y-8">
                     <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -74,10 +71,10 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
                             </h4>
 
                             {/* Chart Area */}
-                            <div className="flex-1 relative border-l border-b border-slate-300 m-8">
+                            <div className="flex-1 relative border-l border-b border-slate-300 ml-12 mb-10 mr-6 mt-6">
                                 {/* Axes Labels */}
-                                <div className="absolute -left-8 top-0 bottom-0 flex items-center justify-center -rotate-90 text-xs text-slate-400 font-medium tracking-wider whitespace-nowrap">
-                                    ← Serious · Playful →
+                                <div className="absolute -left-12 top-0 bottom-0 flex items-center justify-center w-8 text-xs text-slate-400 font-medium tracking-wider whitespace-nowrap">
+                                    <span className="-rotate-90">← Serious · Playful →</span>
                                 </div>
                                 <div className="absolute left-0 right-0 -bottom-8 flex items-center justify-center text-xs text-slate-400 font-medium tracking-wider">
                                     ← Classic · Modern →

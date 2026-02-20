@@ -50,97 +50,101 @@ export default function GeneratorSection() {
 
     return (
         <section className="w-full max-w-6xl mx-auto mb-32 px-4 scroll-mt-20" id="generator">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="flex justify-center mb-10">
+                <h2 className="text-3xl font-bold text-slate-900">
+                    Icon Studio
+                </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-12 items-stretch">
 
                 {/* Controls */}
-                <div className="space-y-8">
-                    <h2 className="text-2xl font-bold flex items-center gap-2 text-slate-900">
-                        <span className="text-primary">02.</span> Icon Studio
-                    </h2>
+                <div className="flex flex-col h-full">
 
-                    <div className="bg-white border border-slate-200 p-6 rounded-2xl space-y-6 shadow-xl shadow-slate-200/50">
+                    <div className="flex-1 bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between shadow-xl shadow-slate-200/50">
+                        <div className="space-y-8">
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-slate-600">Core Motif / Subject</label>
-                            <input
-                                type="text"
-                                value={motif}
-                                onChange={(e) => setMotif(e.target.value)}
-                                placeholder="e.g. Fox, Rocket, Chat Bubble"
-                                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:border-primary focus:outline-none transition-colors"
-                            />
-                        </div>
+                            <div className="space-y-3">
+                                <label className="text-sm font-medium text-slate-600 block mb-1">Core Motif / Subject</label>
+                                <input
+                                    type="text"
+                                    value={motif}
+                                    onChange={(e) => setMotif(e.target.value)}
+                                    placeholder="예: 여우, 로켓, 말풍선"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:border-primary focus:outline-none transition-colors"
+                                />
+                            </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-600">Primary Color</label>
-                                <div className="flex items-center gap-3">
-                                    <input
-                                        type="color"
-                                        value={color}
-                                        onChange={(e) => setColor(e.target.value)}
-                                        className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
-                                    />
-                                    <span className="text-slate-500 font-mono text-sm uppercase">{color}</span>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-3">
+                                    <label className="text-sm font-medium text-slate-600 block mb-1">Primary Color</label>
+                                    <div className="flex items-center gap-3">
+                                        <input
+                                            type="color"
+                                            value={color}
+                                            onChange={(e) => setColor(e.target.value)}
+                                            className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
+                                        />
+                                        <span className="text-slate-500 font-mono text-sm uppercase">{color}</span>
+                                    </div>
+                                </div>
+                                <div className="space-y-3">
+                                    <label className="text-sm font-medium text-slate-600 block mb-1">Secondary Color</label>
+                                    <div className="flex items-center gap-3">
+                                        <input
+                                            type="color"
+                                            value={secondaryColor}
+                                            onChange={(e) => setSecondaryColor(e.target.value)}
+                                            className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
+                                        />
+                                        <span className="text-slate-500 font-mono text-sm uppercase">{secondaryColor}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-slate-600">Secondary Color</label>
-                                <div className="flex items-center gap-3">
-                                    <input
-                                        type="color"
-                                        value={secondaryColor}
-                                        onChange={(e) => setSecondaryColor(e.target.value)}
-                                        className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
-                                    />
-                                    <span className="text-slate-500 font-mono text-sm uppercase">{secondaryColor}</span>
+
+                            <div className="space-y-3">
+                                <label className="text-sm font-medium text-slate-600 block mb-1">Design Style</label>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {["Minimalist", "3D Render", "Neon Glow", "Paper Cut", "Gradient", "Pixel Art"].map((s) => (
+                                        <button
+                                            key={s}
+                                            onClick={() => setStyle(s)}
+                                            className={`px-4 py-2 text-sm rounded-lg border transition-all ${style === s
+                                                ? "bg-primary/10 border-primary text-primary"
+                                                : "bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300"
+                                                }`}
+                                        >
+                                            {s}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-slate-600">Design Style</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                {["Minimalist", "3D Render", "Neon Glow", "Paper Cut", "Gradient", "Pixel Art"].map((s) => (
-                                    <button
-                                        key={s}
-                                        onClick={() => setStyle(s)}
-                                        className={`px-4 py-2 text-sm rounded-lg border transition-all ${style === s
-                                            ? "bg-primary/10 border-primary text-primary"
-                                            : "bg-slate-50 border-slate-200 text-slate-600 hover:border-slate-300"
-                                            }`}
-                                    >
-                                        {s}
-                                    </button>
-                                ))}
+                            <div className="space-y-3">
+                                <label className="text-sm font-medium text-slate-600 block mb-1">Reference Image (Optional)</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
+                                    className="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
+                                />
                             </div>
+
+                            {error && (
+                                <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-600 text-sm">
+                                    <AlertCircle className="w-4 h-4" />
+                                    {error}
+                                </div>
+                            )}
+
+                            <button
+                                onClick={handleGenerate}
+                                disabled={isGenerating || !motif}
+                                className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 mt-6"
+                            >
+                                {isGenerating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Wand2 className="w-5 h-5" />}
+                                {isGenerating ? "Designing..." : "Generate Icon"}
+                            </button>
                         </div>
-
-                        <div className="space-y-2">
-                            <label className="text-sm font-medium text-slate-600">Reference Image (Optional)</label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                className="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
-                            />
-                        </div>
-
-                        {error && (
-                            <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-600 text-sm">
-                                <AlertCircle className="w-4 h-4" />
-                                {error}
-                            </div>
-                        )}
-
-                        <button
-                            onClick={handleGenerate}
-                            disabled={isGenerating || !motif}
-                            className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 mt-4"
-                        >
-                            {isGenerating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Wand2 className="w-5 h-5" />}
-                            {isGenerating ? "Designing..." : "Generate Icon"}
-                        </button>
                     </div>
                 </div>
 

@@ -28,13 +28,13 @@ export default function SearchSection({ onSearch, isSearching }: SearchSectionPr
                         type="text"
                         value={term}
                         onChange={(e) => setTerm(e.target.value)}
-                        placeholder="Search App Store keywords (e.g. 'Social', 'Crypto', 'Fitness')"
+                        placeholder="앱스토어 키워드를 검색해보세요 (예: 데이팅, 가계부, 피트니스)"
                         className="w-full bg-transparent px-4 py-4 text-slate-900 placeholder-slate-400 focus:outline-none"
                     />
                     <button
                         type="submit"
                         disabled={isSearching}
-                        className="mr-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm rounded-lg transition-colors disabled:opacity-50"
+                        className="mr-2 px-4 py-2 bg-primary hover:bg-primary/90 font-semibold text-white text-sm rounded-lg transition-colors disabled:opacity-50"
                     >
                         {isSearching ? <Loader2 className="w-4 h-4 animate-spin" /> : "Search"}
                     </button>
