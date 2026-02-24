@@ -11,7 +11,7 @@ export default function AnalysisResults({ results }: AnalysisResultsProps) {
     return (
         <section className="w-full max-w-6xl mx-auto mb-24 px-4 mt-12">
             <div className="flex justify-center mb-10">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="font-[family-name:var(--font-montserrat)] text-3xl font-bold text-slate-900">
                     Market Analysis
                 </h2>
             </div>

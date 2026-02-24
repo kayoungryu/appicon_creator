@@ -1,12 +1,29 @@
 "use client";
 
 import { Wand2, RefreshCw, AlertCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { generateIcon } from "@/app/actions";
 import Image from "next/image";
 
-export default function GeneratorSection() {
-    const [motif, setMotif] = useState("");
+interface GeneratorSectionProps {
+    initialMotif?: string;
+}
+
+export default function GeneratorSection({ initialMotif = "" }: GeneratorSectionProps) {
+    const [motif, setMotif] = useState(initialMotif);
+
+    // Update local state if prop changes
+    useEffect(() => {
+        if (initialMotif) {
+            setMotif(initialMotif);
+            // Scroll to generator when clicked
+            const el = document.getElementById('generator');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [initialMotif]);
+
     const [color, setColor] = useState("#8b5cf6");
     const [secondaryColor, setSecondaryColor] = useState("#ffffff");
     const [style, setStyle] = useState("Minimalist");
@@ -51,7 +68,7 @@ export default function GeneratorSection() {
     return (
         <section className="w-full max-w-6xl mx-auto mb-32 px-4 scroll-mt-20" id="generator">
             <div className="flex justify-center mb-10">
-                <h2 className="text-3xl font-bold text-slate-900">
+                <h2 className="font-[family-name:var(--font-montserrat)] text-3xl font-bold text-slate-900">
                     Icon Studio
                 </h2>
             </div>
@@ -60,11 +77,11 @@ export default function GeneratorSection() {
                 {/* Controls */}
                 <div className="flex flex-col h-full">
 
-                    <div className="flex-1 bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between shadow-xl shadow-slate-200/50">
+                    <div className="flex-1 bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between">
                         <div className="space-y-8">
 
                             <div className="space-y-3">
-                                <label className="text-sm font-medium text-slate-600 block mb-1">Core Motif / Subject</label>
+                                <label className="font-[family-name:var(--font-montserrat)] text-sm font-medium text-slate-600 block mb-1">Core Motif / Subject</label>
                                 <input
                                     type="text"
                                     value={motif}
@@ -76,25 +93,25 @@ export default function GeneratorSection() {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-3">
-                                    <label className="text-sm font-medium text-slate-600 block mb-1">Primary Color</label>
+                                    <label className="font-[family-name:var(--font-montserrat)] text-sm font-medium text-slate-600 block mb-1">Primary Color</label>
                                     <div className="flex items-center gap-3">
                                         <input
                                             type="color"
                                             value={color}
                                             onChange={(e) => setColor(e.target.value)}
-                                            className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
+                                            className="h-10 w-10 cursor-pointer bg-transparent border-none p-0 [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border [&::-webkit-color-swatch]:border-slate-200 [&::-webkit-color-swatch]:rounded-full [&::-moz-color-swatch]:border [&::-moz-color-swatch]:border-slate-200 [&::-moz-color-swatch]:rounded-full"
                                         />
                                         <span className="text-slate-500 font-mono text-sm uppercase">{color}</span>
                                     </div>
                                 </div>
                                 <div className="space-y-3">
-                                    <label className="text-sm font-medium text-slate-600 block mb-1">Secondary Color</label>
+                                    <label className="font-[family-name:var(--font-montserrat)] text-sm font-medium text-slate-600 block mb-1">Secondary Color</label>
                                     <div className="flex items-center gap-3">
                                         <input
                                             type="color"
                                             value={secondaryColor}
                                             onChange={(e) => setSecondaryColor(e.target.value)}
-                                            className="h-10 w-10 rounded cursor-pointer bg-transparent border-none p-0"
+                                            className="h-10 w-10 cursor-pointer bg-transparent border-none p-0 [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border [&::-webkit-color-swatch]:border-slate-200 [&::-webkit-color-swatch]:rounded-full [&::-moz-color-swatch]:border [&::-moz-color-swatch]:border-slate-200 [&::-moz-color-swatch]:rounded-full"
                                         />
                                         <span className="text-slate-500 font-mono text-sm uppercase">{secondaryColor}</span>
                                     </div>
@@ -102,7 +119,7 @@ export default function GeneratorSection() {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-sm font-medium text-slate-600 block mb-1">Design Style</label>
+                                <label className="font-[family-name:var(--font-montserrat)] text-sm font-medium text-slate-600 block mb-1">Design Style</label>
                                 <div className="grid grid-cols-2 gap-2">
                                     {["Minimalist", "3D Render", "Neon Glow", "Paper Cut", "Gradient", "Pixel Art"].map((s) => (
                                         <button
@@ -120,7 +137,7 @@ export default function GeneratorSection() {
                             </div>
 
                             <div className="space-y-3">
-                                <label className="text-sm font-medium text-slate-600 block mb-1">Reference Image (Optional)</label>
+                                <label className="font-[family-name:var(--font-montserrat)] text-sm font-medium text-slate-600 block mb-1">Reference Image (Optional)</label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -139,9 +156,8 @@ export default function GeneratorSection() {
                             <button
                                 onClick={handleGenerate}
                                 disabled={isGenerating || !motif}
-                                className="w-full py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-purple-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 mt-6"
+                                className="font-[family-name:var(--font-montserrat)] w-full py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white rounded-xl font-bold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center mt-6"
                             >
-                                {isGenerating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Wand2 className="w-5 h-5" />}
                                 {isGenerating ? "Designing..." : "Generate Icon"}
                             </button>
                         </div>
@@ -149,19 +165,13 @@ export default function GeneratorSection() {
                 </div>
 
                 {/* Preview Area */}
-                <div className="relative aspect-square md:aspect-auto md:h-full min-h-[400px] bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-center overflow-hidden">
+                <div className="relative aspect-square md:aspect-auto md:h-full min-h-[400px] bg-slate-100 rounded-2xl flex items-center justify-center overflow-hidden">
 
                     {!isGenerating && !generatedImage ? (
-                        <div className="text-center space-y-4 relative z-10 p-8">
-                            <div className="w-32 h-32 mx-auto bg-white rounded-3xl border border-slate-200 flex items-center justify-center shadow-lg">
-                                <div className="w-20 h-20 rounded-2xl bg-slate-100"></div>
-                            </div>
-                            <p className="text-slate-400 text-sm">Preview will appear here</p>
-                        </div>
+                        <div className="relative w-[150px] h-[150px] bg-white rounded-[22%] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)]"></div>
                     ) : isGenerating ? (
                         <div className="text-center space-y-4 relative z-10">
-                            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
-                            <p className="text-slate-500 animate-pulse">Dreaming up ideas based on &quot;{motif}&quot;...</p>
+                            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
                         </div>
                     ) : (
                         <div className="relative w-full h-full p-8 flex items-center justify-center z-10">

@@ -15,6 +15,7 @@ export default function Home() {
   const [trendData, setTrendData] = useState<TrendData | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [selectedKeyword, setSelectedKeyword] = useState<string>("");
 
   const handleSearch = async (term: string) => {
     setIsSearching(true);
@@ -54,9 +55,13 @@ export default function Home() {
 
       <div className="relative z-10 px-4">
 
-        <Hero />
+        <div className="flex flex-col items-center">
+          <Hero />
 
-        <SearchSection onSearch={handleSearch} isSearching={isSearching} />
+          <div className="mt-[60px] w-full">
+            <SearchSection onSearch={handleSearch} isSearching={isSearching} />
+          </div>
+        </div>
 
         {isSearching && (
           <div className="flex justify-center my-20">
@@ -67,13 +72,13 @@ export default function Home() {
         {hasSearched && !isSearching && (
           <div id="analysis" className="animate-in fade-in slide-in-from-bottom-4 duration-700">
             <AnalysisResults results={results} />
-            {trendData && <TrendAnalysis data={trendData} term={results[0]?.genres[0] || "App"} apps={results} />}
+            {trendData && <TrendAnalysis data={trendData} term={results[0]?.genres[0] || "App"} apps={results} onKeywordClick={setSelectedKeyword} />}
           </div>
         )}
 
         <div className="my-32 border-t border-slate-100 w-full max-w-7xl mx-auto"></div>
 
-        <GeneratorSection />
+        <GeneratorSection initialMotif={selectedKeyword} />
 
         <footer className="max-w-7xl mx-auto pt-10 border-t border-slate-100 text-center text-slate-400 text-sm pb-10">
           <p>© SNOW Design</p>

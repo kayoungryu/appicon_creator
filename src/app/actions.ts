@@ -28,18 +28,18 @@ export async function generateIcon(motif: string, style: string, primaryColor: s
             imageDescription = visionResponse.choices[0].message.content || "";
         }
 
-        const prompt = `App icon for a mobile application. 
+        const prompt = `Create a highly minimalist, simple logo graphic.
     Subject: ${motif}. 
     Style: ${style}. 
     Primary Color: ${primaryColor}. 
     Secondary Color: ${secondaryColor}.
     ${imageDescription ? `Reference Inspiration: ${imageDescription}` : ""}
-    High quality, professional design, suitable for App Store. 
-    No text, no words, just the icon graphic. 
-    The icon should be distinct, memorable, and scalable.
-    Avoid complex details, focus on shape and color.
-    Do not add text or labels to the icon.
-    Background: Rounded square shape typical of iOS icons.`;
+    Extremely clean and simple. Professional modern design.
+    NO text, NO words, NO letters.
+    IMPORTANT CRITERIA:
+    1. Draw ONLY the main subject artwork centered on a flat, solid colored background.
+    2. DO NOT draw an app icon frame, border, or rounded square around the artwork.
+    3. Keep the design extremely simple, flat, and avoiding overly complex details.`;
 
         const response = await openai.images.generate({
             model: "dall-e-3",

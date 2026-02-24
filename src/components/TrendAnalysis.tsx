@@ -16,26 +16,26 @@ interface TrendAnalysisProps {
     data: TrendData;
     term: string;
     apps: AppData[]; // We need the full app data to get icons
+    onKeywordClick?: (keyword: string) => void;
 }
 
-export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) {
+export default function TrendAnalysis({ data, term, apps, onKeywordClick }: TrendAnalysisProps) {
     if (!data) return null;
 
     return (
         <section className="w-full max-w-6xl mx-auto mb-20 px-4">
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 relative overflow-hidden shadow-xl shadow-slate-200/50">
+            <div className="bg-white border border-slate-200 rounded-2xl p-8 relative overflow-hidden">
 
                 <div className="relative z-10 space-y-8">
-                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-primary" />
+                    <h3 className="font-[family-name:var(--font-montserrat)] text-xl font-bold text-slate-900 flex justify-center items-center gap-2">
                         AI Trend Insights for &quot;{term}&quot;
                     </h3>
 
                     <div className="grid lg:grid-cols-2 gap-12">
                         {/* Text Analysis */}
-                        <div className="space-y-6">
-                            <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                                <h4 className="text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
+                        <div className="flex flex-col justify-between space-y-6 h-full">
+                            <div className="flex-1 p-6 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-start justify-center">
+                                <h4 className="font-[family-name:var(--font-montserrat)] text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
                                     <TrendingUp className="w-4 h-4" /> Dominant Style
                                 </h4>
                                 <p className="text-lg font-medium text-slate-900 mb-2">{data.dominantStyle}</p>
@@ -44,8 +44,8 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
                                 </p>
                             </div>
 
-                            <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                                <h4 className="text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
+                            <div className="flex-1 p-6 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-start justify-center">
+                                <h4 className="font-[family-name:var(--font-montserrat)] text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
                                     <Palette className="w-4 h-4" /> Color Psychology
                                 </h4>
                                 <p className="text-lg font-medium text-slate-900 mb-2">{data.colorPsychology}</p>
@@ -54,8 +54,8 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
                                 </p>
                             </div>
 
-                            <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                                <h4 className="text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
+                            <div className="flex-1 p-6 bg-slate-50 rounded-xl border border-slate-100 flex flex-col items-start justify-center">
+                                <h4 className="font-[family-name:var(--font-montserrat)] text-sm text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2 font-semibold">
                                     <Lightbulb className="w-4 h-4" /> Visual Metaphors
                                 </h4>
                                 <p className="text-slate-600 leading-relaxed text-sm">
@@ -65,8 +65,8 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
                         </div>
 
                         {/* Graph */}
-                        <div className="bg-slate-50 rounded-xl border border-slate-200 p-6 relative h-[600px] flex flex-col">
-                            <h4 className="text-sm text-slate-500 uppercase tracking-widest mb-4 font-semibold text-center">
+                        <div className="bg-slate-50 rounded-xl p-6 relative h-full min-h-[500px] flex flex-col">
+                            <h4 className="font-[family-name:var(--font-montserrat)] text-sm text-slate-500 uppercase tracking-widest mb-4 font-semibold text-center">
                                 Competitive Landscape (30 Icons)
                             </h4>
 
@@ -119,7 +119,11 @@ export default function TrendAnalysis({ data, term, apps }: TrendAnalysisProps) 
 
                     <div className="mt-8 flex flex-wrap gap-2 justify-center">
                         {data.keywords?.map((keyword, i) => (
-                            <span key={i} className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 flex items-center gap-1">
+                            <span
+                                key={i}
+                                onClick={() => onKeywordClick?.(keyword)}
+                                className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20 flex items-center gap-1 cursor-pointer hover:bg-primary/20 transition-colors"
+                            >
                                 <Tag className="w-3 h-3" />
                                 {keyword}
                             </span>
