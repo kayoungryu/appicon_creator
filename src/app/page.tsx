@@ -55,7 +55,7 @@ export default function Home() {
 
       <div className="relative z-10 px-4">
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-[25vh] pb-[10vh] transition-all duration-700 ease-in-out">
           <Hero />
 
           <div className="mt-[60px] w-full">
@@ -76,13 +76,17 @@ export default function Home() {
           </div>
         )}
 
-        <div className="my-32 border-t border-slate-100 w-full max-w-7xl mx-auto"></div>
+        {hasSearched && !isSearching && (
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <div className="my-32 border-t border-slate-100 w-full max-w-7xl mx-auto"></div>
 
-        <GeneratorSection initialMotif={selectedKeyword} />
+            <GeneratorSection initialMotif={selectedKeyword} />
 
-        <footer className="max-w-7xl mx-auto pt-10 border-t border-slate-100 text-center text-slate-400 text-sm pb-10">
-          <p>© SNOW Design</p>
-        </footer>
+            <footer className="max-w-7xl mx-auto pt-10 border-t border-slate-100 text-center text-slate-400 text-sm pb-10">
+              <p>© SNOW Design</p>
+            </footer>
+          </div>
+        )}
       </div>
     </main>
   );
